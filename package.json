@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Util library for rapid file IO",
   "main": "lib/index.js",
+  "repository": "https://github.com/lovebug356/pifpaf.git",
   "scripts": {
     "test": "./node_modules/.bin/mocha -R spec"
   },

@@ -1,2 +1,4 @@
 *.swp
+lib/test
 node_modules
+*.log
