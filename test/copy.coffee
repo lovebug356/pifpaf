@@ -14,16 +14,17 @@ describe 'Copy', () ->
       done()
 
   it 'should copy a non empty file', (done) ->
-    fs.writeFile 'origFile.txt', 'Hello world', (err) ->
-      if err
-        done err
-      pifpaf.copy(['origFile.txt', 'copyFile.txt']).then () ->
-        pifpaf.isFile 'copyFile.txt'
-      .then (check) ->
-        check.should.eql true
-        done()
-      .fail (err) ->
-        done err
+    pifpaf.write('origFile.txt', 'Hello world').then () ->
+      pifpaf.copy ['origFile.txt', 'copyFile.txt']
+      pifpaf.isFile 'copyFile.txt'
+    .then (check) ->
+      check.should.eql true
+      pifpaf.read 'copyFile.txt'
+    .then (data) ->
+      data.length.should.eql 11
+      done()
+    .fail (err) ->
+      done err
 
   it 'should copy an empty file', (done) ->
     pifpaf.touch('origFile.txt').then () ->

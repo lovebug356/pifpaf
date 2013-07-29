@@ -87,3 +87,10 @@ module.exports.copy = copy = (file) ->
     defer.resolve()
   rd.pipe wr
   defer.promise
+
+module.exports.read = read = (file) ->
+  Q.nfcall fs.readFile, file
+
+module.exports.write = write = (file, buffer) ->
+  Q.nfcall fs.writeFile, file, buffer
+
