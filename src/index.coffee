@@ -74,3 +74,16 @@ module.exports.rm = rm = (file) ->
         return defer.reject err
       defer.resolve()
     prom
+
+module.exports.copy = copy = (file) ->
+  defer = Q.defer()
+  rd = fs.createReadStream file[0]
+  wr = fs.createWriteStream file[1]
+  rd.on "error", (err) -> defer.reject err
+  wr.on "error", (err) -> defer.reject err
+  wr.on "close", (err) ->
+    if err
+      defer.reject err
+    defer.resolve()
+  rd.pipe wr
+  defer.promise
