@@ -18,7 +18,6 @@ describe 'Copy', () ->
       if err
         done err
       pifpaf.copy(['origFile.txt', 'copyFile.txt']).then () ->
-        console.log "hello world", err
         pifpaf.isFile 'copyFile.txt'
       .then (check) ->
         check.should.eql true
