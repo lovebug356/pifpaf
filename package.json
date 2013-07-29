@@ -1,6 +1,6 @@
 {
   "name": "pifpaf",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Util library for rapid file IO",
   "main": "lib/index.js",
   "repository": "https://github.com/lovebug356/pifpaf.git",
