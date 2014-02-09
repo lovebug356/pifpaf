@@ -39,11 +39,11 @@ forFileInList = (list, done) ->
 
 module.exports.mkdir = mkdir = (file) ->
   forFileInList file, (file) ->
-    prom = Q.when () ->
     parent = path.dirname file
-    if parent != '.'
-      prom = mkdir parent
-    prom.then () ->
+    isDirectory(parent).then (isDir) ->
+      if not isDir
+        return mkdir parent
+    .then () ->
       defer = Q.defer()
       fs.mkdir file, (err) ->
         if err != null and err.code == 'EEXIST'

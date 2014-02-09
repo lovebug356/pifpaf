@@ -21,6 +21,18 @@ describe 'Mkdir', () ->
     .fail (err) ->
       done err
 
+  it 'should do nothing if the folder is already existing', (done) ->
+    pifpaf.mkdir('node_modules').then () ->
+      done()
+    .fail (err) ->
+      done err
+
+  it 'should create a folder with a absolute path', (done) ->
+    pifpaf.mkdir(__dirname + '/test-mkdir').then () ->
+      done()
+    .fail (err) ->
+      done err
+
   it 'should create the full folder structure if needed', (done) ->
     pifpaf.mkdir('test-structure/mkdir').then () ->
       pifpaf.isDirectory 'test-structure'
